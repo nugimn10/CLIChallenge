@@ -4,6 +4,8 @@ using System.IO;
 using System.Globalization;
 using McMaster.Extensions.CommandLineUtils;
 using System.Collections.Generic;
+using System.Text;
+using System.Net;
 
 namespace Latihan12Feb
 {
@@ -13,7 +15,11 @@ namespace Latihan12Feb
         typeof(LowerCase),
         typeof(Capitalize),
         typeof(Palindrome),
-        typeof(obfuscator)
+        typeof(obfuscator),
+        typeof(randomstring),
+        typeof(GetIPpublic),
+        typeof(getIPPrivateNetwork),
+        typeof(sum)
     )]
     class Program
     {
@@ -99,23 +105,25 @@ namespace Latihan12Feb
     {
         [Argument(0)]
        public string text { get; set; }
-       public bool OnExecute(CommandLineApplication app)
-        {
-
-            string first = text.Substring(0, text.Length / 2);
-            char[] arr = text.ToCharArray();
-
-            Array.Reverse(arr);
-
-            string temp = new string(arr);
-            string second = temp.Substring(0, temp.Length / 2);
-
-            Console.WriteLine(first.Equals(second));
-            return first.Equals(second);
-        }
+       public void OnExecute(CommandLineApplication app)
+            {
+                string rev;
+                char[] word = text.ToCharArray();
+                Array.Reverse(word);
+                rev = new string(word);
+                bool palindrom = text.Equals(rev, StringComparison.OrdinalIgnoreCase);
+                if (palindrom == true)
+                {
+                    Console.WriteLine("Is palindrome? Yes");
+                } else
+                {
+                    Console.WriteLine("Is palindrome? No");
+                }
+            }
     }
 
-   [Command(Description = "Command to Capitalize string", Name = "obfuscator")] 
+    //4
+   [Command(Description = "obfuscator ", Name = "obfuscator")] 
     public class   obfuscator 
     {
         [Argument(0)]
@@ -133,12 +141,93 @@ namespace Latihan12Feb
         }
 
     }
-    
-    public class randomstring 
+
+
+    //5
+    [Command(Description = "Command to Capitalize string", Name = "randomstring")]     
+    class randomstring 
     {
+         [Option(ShortName = "l")]
+        public int Count { get; }
+        public void OnExecute(CommandLineApplication app)
+        {
+            StringBuilder str_build = new StringBuilder();  
+            Random random = new Random();  
+
+            char letter;  
+
+            for (int i = 0; i < Count; i++)
+            {
+                double flt = random.NextDouble();
+                int shift = Convert.ToInt32(Math.Floor(25 * flt));
+                letter = Convert.ToChar(shift + 65);
+                str_build.Append(letter);  
+            }  
+            System.Console.WriteLine(str_build.ToString());
+
+        }
 
     }
-     
+
+    //6
+    [Command(Description = "Command to Capitalize string", Name = "ip")]     
+    class GetIPpublic
+    {
+        public void OnExecute(CommandLineApplication app)
+        {
+            string hostName = Dns.GetHostName(); // Retrive the Name of HOST  
+            Console.WriteLine(hostName);  
+           // Get the IP  
+            string myIP = Dns.GetHostEntry(hostName).AddressList[3].ToString();  
+            Console.WriteLine("My IP Address is :"+myIP);  
+            Console.ReadKey();  
+        }
+
+
+    }
+
+
+    //7
+    [Command(Description = "Command to Capitalize string", Name = "ip-external")]  
+    class getIPPrivateNetwork
+    {
+        public void OnExecute(CommandLineApplication app)
+        {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+                {
+                    Console.WriteLine("My IP Address is : null");
+                }
+
+            IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());
+
+            Console.WriteLine("My IP Address Is : "+host
+                .AddressList
+                .FirstOrDefault(ip => ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).ToString()); 
+        }
+    }
+
+
+    //10
+    [Command(Description = "command to sum every input", Name="sum")]
+    class sum
+    {
+        [Argument(0)]   
+        public double num { get; set; }
+        public void OnExecute(CommandLineApplication app)
+        {
+            double temp = 0;
+            for (int i = 0; num == null; i++)
+            {
+                int n = i +1;
+                Console.Write($"insert {n} number :"); num = Console.Read();
+                temp = temp + num;
+                Console.WriteLine();
+
+            }
+            Console.WriteLine(temp);
+
+        }
+    }
  }
  
 
