@@ -14,6 +14,10 @@ namespace Latihan12Feb
         typeof(UpperCase),
         typeof(LowerCase),
         typeof(Capitalize),
+        typeof(Add),
+        typeof(Multiply),
+        typeof(Substract),
+        typeof(Divide),
         typeof(Palindrome),
         typeof(obfuscator),
         typeof(randomstring),
@@ -95,10 +99,71 @@ namespace Latihan12Feb
         }
     }
 
-    public class Arithmatic 
+    //num2
+    [Command(Description = "Command to add number", Name = "add")]
+    class Add
     {
+        [Argument(0)]
+        public int [] num { get; set; }
+        public void OnExecute(CommandLineApplication app)
+        {
+            long sum = 0;
+            for (int i = 0; i < num.Length; i++)
+            {
+                sum += num[i];
+            }
+            Console.WriteLine(sum);
 
+        }
     }
+    [Command(Description = "Command to substract number", Name = "substract")]
+    class Substract
+    {
+        [Argument(0)]
+        public int [] num { get; set; }
+        public void OnExecute(CommandLineApplication app)
+        {
+            long sum = num[0];
+            for (int i = 1; i < num.Length; i++)
+            {
+                sum -= num[i];
+            }
+            Console.WriteLine(sum);
+        }
+    }
+    [Command(Description = "Command to multiply number", Name = "multiply")]
+    class Multiply
+    {
+        [Argument(0)]
+        public int [] num { get; set; }
+        public void OnExecute(CommandLineApplication app)
+        {
+
+            double sum = num[0];
+            for (int i = 1; i < num.Length; i++)
+            {
+                sum *= num[i];
+            }
+            Console.WriteLine(sum);
+
+        }
+    }
+    [Command(Description = "Command to divide number", Name = "divide")]
+    class Divide
+    {
+        [Argument(0)]
+        public int [] num { get; set; }
+        public void OnExecute(CommandLineApplication app)
+        {
+            double sum = num[0];
+            for (int i = 1; i < num.Length; i++)
+            {
+                sum /= num[i];
+            }
+            Console.WriteLine(sum);
+        }
+    }
+
     
     [Command(Description = "check if the string is palindrome", Name = "palindrome")] 
     class Palindrome
@@ -211,22 +276,25 @@ namespace Latihan12Feb
     [Command(Description = "command to sum every input", Name="sum")]
     class sum
     {
-        [Argument(0)]   
-        public double num { get; set; }
         public void OnExecute(CommandLineApplication app)
         {
-            num =0;
-            double temp = 0;
-            for (int i = 0; num != null; i++)
+            long sum = 0;
+            string X = "";
+            while (X != null)
             {
-                int n = i +1;
-                Console.Write($"insert {n} number :"); num = Console.Read();
-                temp = temp + num;
-                Console.WriteLine();
-
+                Console.Write("Insert number : ");
+                X = Console.ReadLine();
+                if (X == "")
+                {
+                    break;
+                }
+                else
+                {
+                    long A = Convert.ToInt32(X);
+                    sum += A;
+                }
             }
-            Console.WriteLine(temp);
-
+            Console.WriteLine(sum);
         }
     }
  }
