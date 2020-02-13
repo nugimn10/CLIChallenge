@@ -215,8 +215,9 @@ namespace Latihan12Feb
         public double num { get; set; }
         public void OnExecute(CommandLineApplication app)
         {
+            num =0;
             double temp = 0;
-            for (int i = 0; num == null; i++)
+            for (int i = 0; num != null; i++)
             {
                 int n = i +1;
                 Console.Write($"insert {n} number :"); num = Console.Read();
