@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Data\\Gigaming\\CLIChallenge\\CLIChallenge.csproj": {}
+    "D:\\Data\\Gigaming\\CLIChallenge\\CLIChallenge\\CLIChallenge.csproj": {}
   },
   "projects": {
-    "D:\\Data\\Gigaming\\CLIChallenge\\CLIChallenge.csproj": {
+    "D:\\Data\\Gigaming\\CLIChallenge\\CLIChallenge\\CLIChallenge.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Data\\Gigaming\\CLIChallenge\\CLIChallenge.csproj",
+        "projectUniqueName": "D:\\Data\\Gigaming\\CLIChallenge\\CLIChallenge\\CLIChallenge.csproj",
         "projectName": "CLIChallenge",
-        "projectPath": "D:\\Data\\Gigaming\\CLIChallenge\\CLIChallenge.csproj",
+        "projectPath": "D:\\Data\\Gigaming\\CLIChallenge\\CLIChallenge\\CLIChallenge.csproj",
         "packagesPath": "C:\\Users\\Nugi\\.nuget\\packages\\",
-        "outputPath": "D:\\Data\\Gigaming\\CLIChallenge\\obj\\",
+        "outputPath": "D:\\Data\\Gigaming\\CLIChallenge\\CLIChallenge\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nugi\\AppData\\Roaming\\NuGet\\NuGet.Config",
